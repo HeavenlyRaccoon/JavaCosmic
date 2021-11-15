@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="/css/main.css"/>
+    <title>Cosmic - Home</title>
+</head>
+<body style="margin: 0; padding: 0">
+<header style="border-bottom: 1px solid #141319;  align-items: center; justify-content: space-between; height: 80px; background: #1C272D; position: fixed; display: flex; width: 100%;">
+    <a style="text-decoration: none" href="/"><span style="margin-left: 20px;font: 24px montserrat,sans-serif; color: white; font-weight: 600;">Cosmic</span></a>
+    <form method="post" action="filter">
+        <div style="display: flex; justify-content: space-between; align-items: center; background: #2E3E4B; border-radius: 10px">
+            <input style="color: white; outline: none;box-shadow: none;border: none; background: #2E3E4B; border-radius: 10px 0px 0px 10px; height: 40px; width: 270px;" type="text" name="filter">
+            <button type="submit" style="border: none; background: none; width: 40px; height: 40px;"><img style="text-align: center; vertical-align: center; width: 20px; height: 20px" src="http://cdn.onlinewebfonts.com/svg/img_358398.png"></button>
+        </div>
+    </form>
+    <button id="auth" style="border: none; background-color: #192328; border-radius: 20px; color: white; margin-right: 20px; height: 40px; width: 140px;">Авторизация</button>
+</header>
+<section style="height: 100%">
+    <div style="padding-top: 120px; height: 100vh; width: 100%; background: #141319;">
+        <div style="padding: 20px; border-radius: 10px; height: 100%; width: 90%; margin-left: auto; margin-right: auto; background: #1C272D;">
+            <div style=" margin-bottom: 60px; text-align: center; font: 25px montserrat,sans-serif; color: White;">Регистрация</div>
+            <form>
+                <div style="width: 60%; height: 250px;justify-content: space-between; text-align: center; margin-left:auto; margin-right: auto; display: flex; flex-direction: column">
+                    <div style="display: flex; justify-content: space-between">
+                        <span style="padding-top: 10px; font: 18px montserrat,sans-serif; color: White;">Логин</span>
+                        <input id="login"  style="height: 40px; width: 450px" type="text" placeholder="Логин">
+                    </div>
+                    <div style="display: flex; justify-content: space-between">
+                        <span style="padding-top: 10px; font: 18px montserrat,sans-serif; color: White;">Пароль</span>
+                        <input id="password" style="height: 40px; width: 450px" type="password" placeholder="Пароль">
+                    </div>
+                    <div style="display: flex; justify-content: space-between">
+                        <span style="padding-top: 10px; font: 18px montserrat,sans-serif; color: White;">Повторите пароль</span>
+                        <input id="confirmPassword" style="height: 40px; width: 450px" type="password" placeholder="Повторите пароль">
+                    </div>
+                    <div>
+                        <button onclick="signup()" style="border: none; background-color: #EB4D4B; border-radius: 20px; color: white; height: 40px; width: 140px;" type="button">Отправить</button>
+                    </div>
+                    <p style="color: white; font: 18px montserrat,sans-serif;" id="resultMessage"></p>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close">&times;</span>
+                <h2>Авторизация</h2>
+            </div>
+            <div class="modal-img">
+                <img src="https://ob-kassa.ru/content/front/buhoskol_tmp1/images/reviews-icon.jpg">
+            </div>
+            <div class="modal-body">
+                <input type="text" placeholder="Логин">
+                <input type="password" placeholder="Пароль">
+            </div>
+            <div class="modal-footer">
+                <button onclick="signin()" style="border: none; background-color: #EB4D4B; border-radius: 20px; color: white; height: 40px; width: 140px;">Войти</button>
+                <a href="/register">Регистрация</a>
+            </div>
+        </div>
+    </div>
+</section>
+<script src="/js/load.js"></script>
+<script src="/js/signin.js"></script>
+<script src="/js/signup.js"></script>
+<script src="/js/modal.js"></script>
+</body>
+</html>
