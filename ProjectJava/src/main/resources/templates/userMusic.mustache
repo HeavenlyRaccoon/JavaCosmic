@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="/css/main.css"/>
+    <title>Cosmic - my music</title>
+</head>
+<body style="margin: 0; padding: 0">
+<header style="z-index: 200; border-bottom: 1px solid #141319;  align-items: center; justify-content: space-between; height: 80px; background: #1C272D; position: fixed; display: flex; width: 100%;">
+    <span style="margin-left: 20px;font: 24px montserrat,sans-serif; color: white; font-weight: 600;">Cosmic</span>
+    <form method="post" action="filter">
+        <div style="display: flex; justify-content: space-between; align-items: center; background: #2E3E4B; border-radius: 10px">
+            <input style="color: white; outline: none;box-shadow: none;border: none; background: #2E3E4B; border-radius: 10px 0px 0px 10px; height: 40px; width: 270px;" type="text" name="filter">
+            <button type="submit" style="border: none; background: none; width: 40px; height: 40px;"><img style="text-align: center; vertical-align: center; width: 20px; height: 20px" src="http://cdn.onlinewebfonts.com/svg/img_358398.png"></button>
+        </div>
+    </form>
+    <button id="auth" style="border: none; background-color: #192328; border-radius: 20px; color: white; margin-right: 20px; height: 40px; width: 140px;">Авторизация</button>
+    <div id="myProfile" style="display: none">
+        <button style=";border: none; background-color: #EB4D4B; border-radius: 20px; color: white; margin-right: 20px; height: 40px; width: 70px;">Моя музыка</button>
+        <button onclick="logout()" style=";border: none; background-color: #EB4D4B; border-radius: 20px; color: white; margin-right: 20px; height: 40px; width: 70px;">LogOut</button>
+    </div>
+</header>
+<section>
+    <div style="padding-top: 120px; height: 100%; width: 100%; background: #141319;">
+        <div style="padding: 20px; border-radius: 10px; height: 100vh; width: 90%; margin-left: auto; margin-right: auto; background: #1C272D;">
+            <div style=" text-align: center; font: 25px montserrat,sans-serif; color: White;">Моя музыка</div>
+            {{#songs}}
+                <div style="border: 1px solid black; height: content-box; width: content-box; margin: 2px;">
+                    <span style="font-size: medium">{{name}}</span>
+                    <span>{{size}}</span>
+                    <div style="font-size: small;">{{author}}</div>
+                    <audio controls preload="none">
+                        <source src="{{link}}" type="audio/mpeg">
+                        Тег audio не поддерживается вашим браузером.
+                        <a href="{{link}}">Скачайте музыку</a>
+                    </audio>
+                    <button onclick="removeUserSong({{id}})" type="button">Удалить</button>
+                </div>
+            {{/songs}}
+        </div>
+    </div>
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close">&times;</span>
+                <h2>Авторизация</h2>
+            </div>
+            <div class="modal-img">
+                <img src="https://ob-kassa.ru/content/front/buhoskol_tmp1/images/reviews-icon.jpg">
+            </div>
+            <div class="modal-body">
+                <input id="login" type="text" placeholder="Логин">
+                <input id="password" type="password" placeholder="Пароль">
+            </div>
+            <div class="modal-footer">
+                <button onclick="signin()" style="border: none; background-color: #EB4D4B; border-radius: 20px; color: white; height: 40px; width: 140px;">Войти</button>
+                <a href="/register">Регистрация</a>
+                <p id="resultMessage"></p>
+            </div>
+        </div>
+    </div>
+</section>
+<script src="/js/load.js"></script>
+<script src="/js/myMusic.js"></script>
+<script src="/js/signin.js"></script>
+<script src="/js/modal.js"></script>
+<script src="/js/logout.js"></script>
+</body>
+</html>
