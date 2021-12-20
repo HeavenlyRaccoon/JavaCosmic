@@ -2,6 +2,7 @@ function signup() {
     const login = document.querySelector('#login').value;
     const password = document.querySelector('#password').value;
     const confirmPassword = document.querySelector('#confirmPassword').value;
+    const email = document.querySelector('#email').value;
     const resultMessage = document.querySelector('#resultMessage');
     if(confirmPassword!==password){
         resultMessage.innerHTML = 'Пароли не совпадают';
@@ -12,7 +13,8 @@ function signup() {
         headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
         body: JSON.stringify({
             login,
-            password
+            password,
+            email
         })
     }).then(async (response) => {
         if(response.status === 201) {

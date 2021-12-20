@@ -3,6 +3,8 @@ package com.example.cosmic.DTO;
 import com.example.cosmic.domain.User;
 import lombok.Getter;
 import org.hibernate.validator.constraints.Length;
+
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
 @Getter
@@ -16,5 +18,6 @@ public class UserDTO {
     @Length(min = 8, max = 16, message = "Длина пароля должна быть от 8 до 16 символов")
     private String password;
 
-
+    @Email
+    private String email;
 }

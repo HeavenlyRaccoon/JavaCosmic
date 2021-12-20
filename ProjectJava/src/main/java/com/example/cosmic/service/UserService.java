@@ -11,6 +11,9 @@ import com.example.cosmic.repository.UserSongRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import javax.mail.MessagingException;
 
 @Service
 public class UserService {
@@ -29,6 +32,9 @@ public class UserService {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private MailService mailService;
 
     public User saveUser(User user) {
         Role userRole = roleRepository.findByName("ROLE_USER");
@@ -61,4 +67,10 @@ public class UserService {
         UserSong userSong = new UserSong(song, user);
         userSongRepository.save(userSong);
     }
+
+    @Transactional
+    public void sendMail(User user) throws MessagingException {
+        mailService.sendMail(user);
+    }
+
 }

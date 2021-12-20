@@ -22,5 +22,40 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 class CosmicApplicationTests {
 
-   
+    @MockBean
+    SongRepository songRepository;
+
+    @Autowired
+    WebApplicationContext webApplicationContext;
+
+    private MockMvc mockMvc;
+
+    public void setUp() {
+        mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
+    }
+
+    @Test
+    public void testAddSongs() {
+        List<Song> songs = Arrays.asList(
+                new Song("1","1","1","1","1"),
+                new Song("1","1","1","1","1")
+        );
+
+        when(songRepository.findAll()).thenReturn(songs);
+
+        Assert.assertEquals(songRepository.findAll(), songs);
+    }
+
+    @Test
+    public void testGetSongs() throws Exception {
+        setUp();
+        List<Song> songs = Arrays.asList(
+                new Song("1","1","burger","1","1"),
+                new Song("2","2","burger2","2","2")
+        );
+
+        when(songRepository.findByIdLessThan(20)).thenReturn(songs);
+
+        Assert.assertEquals(songRepository.findByIdLessThan(20), songs);
+    }
 }
