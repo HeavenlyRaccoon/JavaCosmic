@@ -1,11 +1,14 @@
 package com.example.cosmic.AOP;
 
+import lombok.extern.java.Log;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
@@ -13,9 +16,10 @@ import java.util.stream.Collectors;
 
 @Aspect
 @Component
-@Slf4j
-public aspect LogAspect {
-    @Pointcut("@annotation(LogAnnotation)")
+public class LogAspect {
+    private Logger logger = LoggerFactory.getLogger(LogAspect.class);
+
+    @Pointcut("execution(public * com.example.cosmic.service.UserService.*(..))")
     public void callAtAppController() {
 
     }
@@ -25,11 +29,11 @@ public aspect LogAspect {
         String args = Arrays.stream(jp.getArgs())
                 .map(Object::toString)
                 .collect(Collectors.joining(","));
-        log.info("before " + jp.toString() + ", args=[" + args + "]");
+        logger.info("before " + jp.toString() + ", args=[" + args + "]");
     }
 
     @After("callAtAppController()")
     public void afterCallAt(JoinPoint jp) {
-        log.info("after " + jp.toString());
+        logger.info("after " + jp.toString());
     }
 }

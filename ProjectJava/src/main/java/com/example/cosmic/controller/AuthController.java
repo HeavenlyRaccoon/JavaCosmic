@@ -25,9 +25,6 @@ public class AuthController {
     private UserService userService;
     @Autowired
     private JwtProvider jwtProvider;
-    @Autowired
-    private MailService mailService;
-
 
 
     @PostMapping("/register")
