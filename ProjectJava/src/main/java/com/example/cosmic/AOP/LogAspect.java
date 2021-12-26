@@ -27,7 +27,7 @@ public class LogAspect {
     @Before("callAtAppController()")
     public void beforeCallMethod(JoinPoint jp) {
         String args = Arrays.stream(jp.getArgs())
-                .map(Object::toString)
+                .map(a -> a.toString())
                 .collect(Collectors.joining(","));
         logger.info("before " + jp.toString() + ", args=[" + args + "]");
     }
